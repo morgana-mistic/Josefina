@@ -1,133 +1,130 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Josefina</title>
 
 <style>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+html,body{
+
+margin:0;
+padding:0;
+width:100%;
+height:100%;
+overflow:hidden;
+background:#000;
+
 }
 
-body{
-    background:#f6ede8;
-    font-family:Arial, Helvetica, sans-serif;
-    display:flex;
-    justify-content:center;
+#contenedor{
+
+position:relative;
+width:100vw;
+height:100vh;
+overflow:hidden;
+
 }
 
-.contenedor{
+#portada{
 
-    position:relative;
-    width:100%;
-    max-width:1024px;
+position:absolute;
+left:0;
+top:0;
+width:100%;
+height:100%;
+object-fit:contain;
+user-select:none;
+
 }
 
-.portada{
+/* zonas clickeables */
 
-    width:100%;
-    display:block;
+#galeria{
+
+position:absolute;
+cursor:pointer;
+z-index:20;
+
 }
 
-/*-------------------------
-    BOTON GALERIA
---------------------------*/
+#musica{
 
-.galeria{
+position:absolute;
+cursor:pointer;
+z-index:20;
 
-    position:absolute;
-
-    left:33%;
-    top:53.5%;
-
-    width:35%;
-    height:6.5%;
-
-    cursor:pointer;
 }
 
+/* botón detener */
 
-/*-------------------------
-    BOTON MUSICA
---------------------------*/
+#detener{
 
-.musica{
+display:none;
 
-    position:absolute;
+position:absolute;
 
-    left:35%;
-    top:66%;
+top:20px;
+right:20px;
 
-    width:30%;
-    height:5.5%;
+padding:12px 20px;
 
-    cursor:pointer;
+border:none;
+
+border-radius:10px;
+
+background:#d46d8d;
+
+color:white;
+
+font-size:18px;
+
+cursor:pointer;
+
+z-index:100;
+
 }
 
-/*-------------------------
-   BOTON DETENER
---------------------------*/
+/* firma */
 
-#stop{
+#firma{
 
-    display:none;
+position:absolute;
 
-    position:fixed;
+left:0;
+right:0;
 
-    top:20px;
-    right:20px;
+bottom:10px;
 
-    padding:12px 20px;
+text-align:center;
 
-    border:none;
+z-index:50;
 
-    border-radius:10px;
+font-family:Arial;
 
-    background:#c56c86;
+font-size:15px;
 
-    color:white;
-
-    font-size:16px;
-
-    cursor:pointer;
-
-    z-index:999;
 }
 
+#firma a{
 
-/*-------------------------
-    FIRMA
---------------------------*/
+color:white;
 
-.firma{
+text-shadow:0 0 5px black;
 
-    text-align:center;
+text-decoration:none;
 
-    padding:20px;
-
-    font-size:15px;
-
-    color:#7b5c5c;
 }
 
-.firma a{
+#firma a:hover{
 
-    text-decoration:none;
+color:#ffd7e3;
 
-    color:#7b5c5c;
-
-    font-weight:bold;
-}
-
-.firma a:hover{
-
-    color:#b86d8b;
 }
 
 </style>
@@ -136,21 +133,29 @@ body{
 
 <body>
 
-<div class="contenedor">
+<div id="contenedor">
 
-<img src="portada.png" class="portada">
+<img id="portada" src="portada.png">
 
-<a href="galeria.html" class="galeria"></a>
+<a id="galeria" href="galeria.html"></a>
 
-<div class="musica" onclick="reproducir()"></div>
+<div id="musica"></div>
 
-</div>
+<button id="detener">
 
-<div class="firma">
+Detener música
+
+</button>
+
+<div id="firma">
 
 <a href="https://wa.me/5493854118422" target="_blank">
+
 Diseño digital Morgana Tecno
+
 </a>
+
+</div>
 
 </div>
 
@@ -160,36 +165,78 @@ Diseño digital Morgana Tecno
 
 </audio>
 
-<button id="stop" onclick="detener()">
-
-Detener música
-
-</button>
-
 <script>
 
+const imagen=document.getElementById("portada");
+
+const galeria=document.getElementById("galeria");
+
+const musica=document.getElementById("musica");
+
 const audio=document.getElementById("audio");
-const stop=document.getElementById("stop");
 
-function reproducir(){
+const detener=document.getElementById("detener");
 
-audio.play();
+function ubicarBotones(){
 
-stop.style.display="block";
+const rect=imagen.getBoundingClientRect();
+
+/*
+Estas medidas corresponden a la imagen de 1024x1536.
+Si en el futuro cambias la portada sólo habrá que
+modificar estos números.
+*/
+
+const escalaX=rect.width/1024;
+const escalaY=rect.height/1536;
+
+const offsetX=rect.left;
+const offsetY=rect.top;
+
+/************* GALERIA *************/
+
+galeria.style.left=(offsetX+330*escalaX)+"px";
+galeria.style.top=(offsetY+745*escalaY)+"px";
+galeria.style.width=(365*escalaX)+"px";
+galeria.style.height=(95*escalaY)+"px";
+
+/************** MUSICA *************/
+
+musica.style.left=(offsetX+345*escalaX)+"px";
+musica.style.top=(offsetY+865*escalaY)+"px";
+musica.style.width=(335*escalaX)+"px";
+musica.style.height=(90*escalaY)+"px";
 
 }
 
-function detener(){
+window.addEventListener("resize",ubicarBotones);
+
+imagen.onload=ubicarBotones;
+
+musica.onclick=function(){
 
 audio.pause();
 
 audio.currentTime=0;
 
-stop.style.display="none";
+audio.play();
+
+detener.style.display="block";
+
+}
+
+detener.onclick=function(){
+
+audio.pause();
+
+audio.currentTime=0;
+
+detener.style.display="none";
 
 }
 
 </script>
 
 </body>
+
 </html>
