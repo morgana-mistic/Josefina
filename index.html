@@ -7,10 +7,7 @@
 
 <title>Bienvenida, Josefina</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -21,418 +18,392 @@ box-sizing:border-box;
 }
 
 html,body{
+
 width:100%;
 height:100%;
 overflow:hidden;
-font-family:'Nunito',sans-serif;
-background:#efe8df;
+
 }
 
 body{
 
-background-image:
+font-family:'Nunito',sans-serif;
 
-linear-gradient(rgba(250,247,243,.45),rgba(250,247,243,.45)),
-url("portada.png");
+background-image:url("portada.png");
 
 background-size:cover;
-background-position:center;
-background-repeat:no-repeat;
 
-display:flex;
-justify-content:center;
-align-items:center;
+background-position:center;
+
+background-repeat:no-repeat;
 
 position:relative;
 
 }
 
-/*-------------------------
-CAPA SUAVE
---------------------------*/
 
-.overlay{
+/* capa de contraste muy suave */
+
+body:before{
+
+content:"";
 
 position:absolute;
+
 inset:0;
 
 background:
 
 linear-gradient(
 180deg,
-rgba(255,255,255,.25),
-rgba(255,255,255,.15),
-rgba(255,255,255,.35)
+rgba(255,240,225,.15),
+rgba(255,240,225,0)
+40%,
+rgba(255,235,220,.20)
 );
 
-backdrop-filter:blur(2px);
+z-index:1;
 
 }
 
-/*-------------------------
-PARTICULAS
---------------------------*/
 
-.particle{
+/* brillo ambiental */
+
+.glow{
 
 position:absolute;
 
-width:6px;
-height:6px;
+width:260px;
+
+height:260px;
 
 border-radius:50%;
 
-background:rgba(255,255,255,.8);
+background:rgba(255,255,255,.25);
 
-animation:float 14s linear infinite;
+filter:blur(50px);
 
-opacity:.6;
+animation:moveGlow 12s infinite alternate;
+
+z-index:2;
 
 }
+
+@keyframes moveGlow{
+
+from{
+transform:translate(-50px,20px);
+}
+
+to{
+transform:translate(60px,-20px);
+}
+
+}
+
+
+/* estrellas */
 
 .star{
 
 position:absolute;
 
-color:#fff;
+color:white;
 
-font-size:12px;
-
-animation:twinkle 5s ease-in-out infinite;
+font-size:18px;
 
 opacity:.7;
 
-}
+animation:twinkle 5s infinite;
 
-@keyframes float{
-
-0%{
-
-transform:translateY(100vh) translateX(0);
-opacity:0;
-
-}
-
-20%{
-
-opacity:.7;
-
-}
-
-80%{
-
-opacity:.7;
-
-}
-
-100%{
-
-transform:translateY(-120vh) translateX(40px);
-opacity:0;
-
-}
+z-index:3;
 
 }
 
 @keyframes twinkle{
 
-0%{
-opacity:.2;
+0%,100%{
+
+opacity:.25;
 transform:scale(.8);
+
 }
 
 50%{
+
 opacity:1;
 transform:scale(1.2);
-}
 
-100%{
-opacity:.2;
-transform:scale(.8);
 }
 
 }
 
-/*-------------------------
-TARJETA
---------------------------*/
 
-.card{
+.s1{
+top:12%;
+left:18%;
+}
 
-position:relative;
+.s2{
+top:22%;
+right:18%;
+animation-delay:2s;
+}
+
+.s3{
+top:55%;
+left:12%;
+animation-delay:3s;
+}
+
+.s4{
+bottom:22%;
+right:15%;
+animation-delay:1s;
+}
+
+
+/* zona interactiva */
+
+.content{
+
+position:absolute;
+
+inset:0;
 
 z-index:5;
 
-width:min(92%,460px);
-
-background:rgba(255,250,246,.72);
-
-backdrop-filter:blur(14px);
-
-border-radius:34px;
-
-padding:42px 30px;
-
-text-align:center;
-
-box-shadow:
-
-0 20px 45px rgba(0,0,0,.12),
-
-0 0 0 1px rgba(255,255,255,.45);
-
-animation:appear 1.4s ease;
-
 }
 
-@keyframes appear{
 
-from{
+/* cartel mi mundo chiquito */
 
-opacity:0;
-transform:translateY(40px);
+.album-link{
 
-}
+position:absolute;
 
-to{
+left:50%;
 
-opacity:1;
-transform:none;
+top:56%;
 
-}
+transform:translate(-50%,-50%);
 
-}
+width:280px;
 
-.icon{
+height:75px;
 
-font-size:52px;
-margin-bottom:14px;
-
-animation:swing 5s ease-in-out infinite;
-
-}
-
-@keyframes swing{
-
-0%{transform:rotate(-2deg);}
-50%{transform:rotate(2deg);}
-100%{transform:rotate(-2deg);}
-
-}
-
-h1{
-
-font-family:'Cormorant Garamond',serif;
-
-font-size:48px;
-
-color:#7c665d;
-
-font-weight:600;
-
-margin-bottom:12px;
-
-}
-
-.subtitle{
-
-font-size:18px;
-
-line-height:1.7;
-
-color:#6f6a63;
-
-margin-bottom:36px;
-
-}
-
-/*-------------------------
-BOTONES
---------------------------*/
-
-.buttons{
+border-radius:40px;
 
 display:flex;
-flex-direction:column;
-gap:16px;
 
-}
-
-.btn{
-
-display:flex;
-justify-content:center;
 align-items:center;
+
+justify-content:center;
 
 text-decoration:none;
 
-padding:16px;
+color:transparent;
 
-border-radius:18px;
+}
 
-background:#ffffffd8;
 
-color:#6e625a;
+/* brillo al pasar */
+
+.album-link:hover{
+
+box-shadow:
+
+0 0 25px rgba(255,210,200,.8);
+
+}
+
+
+/* botones inferiores */
+
+
+.menu{
+
+position:absolute;
+
+bottom:5%;
+
+left:50%;
+
+transform:translateX(-50%);
+
+display:flex;
+
+gap:14px;
+
+justify-content:center;
+
+z-index:10;
+
+}
+
+
+.menu a,
+.menu button{
+
+border:none;
+
+cursor:pointer;
+
+text-decoration:none;
+
+font-family:'Nunito',sans-serif;
+
+font-size:15px;
 
 font-weight:700;
 
-font-size:17px;
+color:#806052;
 
-transition:.35s;
+background:rgba(255,250,242,.88);
+
+padding:12px 18px;
+
+border-radius:30px;
 
 box-shadow:
 
-0 10px 24px rgba(0,0,0,.08);
+0 8px 20px rgba(120,80,60,.18);
+
+transition:.3s;
 
 }
 
-.btn:hover{
+
+.menu a:hover,
+.menu button:hover{
 
 transform:translateY(-4px);
 
-background:#fff;
-
-box-shadow:
-
-0 16px 30px rgba(0,0,0,.12);
+background:white;
 
 }
 
-.footer{
 
-margin-top:32px;
+/* texto auxiliar */
 
-font-size:13px;
+.signature{
 
-color:#8b837d;
+position:absolute;
 
-font-style:italic;
+bottom:1.5%;
 
-}
+width:100%;
 
-/*-------------------------
-RESPONSIVE
---------------------------*/
+text-align:center;
 
-@media(max-width:600px){
+font-size:12px;
 
-.card{
+color:#806052;
 
-padding:34px 24px;
+z-index:10;
 
-}
-
-h1{
-
-font-size:39px;
+opacity:.8;
 
 }
 
-.subtitle{
 
-font-size:16px;
+/* responsive */
+
+
+@media(max-width:700px){
+
+.menu{
+
+bottom:7%;
+
+flex-direction:column;
+
+align-items:center;
+
+gap:10px;
 
 }
 
-.btn{
+.menu a,
+.menu button{
 
-font-size:16px;
+width:220px;
 
-padding:15px;
+}
+
+.album-link{
+
+top:55%;
+
+width:240px;
 
 }
 
 }
 
-/*-------------------------
-ESTRELLAS
---------------------------*/
-
-.s1{top:8%;left:10%;animation-delay:0s;}
-.s2{top:16%;right:12%;animation-delay:2s;}
-.s3{top:70%;left:12%;animation-delay:4s;}
-.s4{top:78%;right:10%;animation-delay:1s;}
-.s5{top:28%;left:85%;animation-delay:3s;}
-.s6{top:55%;left:6%;animation-delay:5s;}
-
-.p1{left:8%;animation-delay:0s;}
-.p2{left:22%;animation-delay:4s;}
-.p3{left:35%;animation-delay:7s;}
-.p4{left:50%;animation-delay:3s;}
-.p5{left:67%;animation-delay:6s;}
-.p6{left:83%;animation-delay:9s;}
-.p7{left:93%;animation-delay:12s;}
 
 </style>
 
 </head>
 
+
 <body>
 
-<div class="overlay"></div>
 
-<div class="particle p1"></div>
-<div class="particle p2"></div>
-<div class="particle p3"></div>
-<div class="particle p4"></div>
-<div class="particle p5"></div>
-<div class="particle p6"></div>
-<div class="particle p7"></div>
+<div class="glow"></div>
+
 
 <div class="star s1">✦</div>
 <div class="star s2">✦</div>
 <div class="star s3">✦</div>
 <div class="star s4">✦</div>
-<div class="star s5">✦</div>
-<div class="star s6">✦</div>
 
-<div class="card">
 
-<div class="icon">🧸</div>
 
-<h1>Bienvenida,<br>Josefina</h1>
+<div class="content">
 
-<p class="subtitle">
 
-Cada historia comienza con un pequeño milagro.
-
-</p>
-
-<div class="buttons">
-
-<a class="btn" href="album.html">
-
-📖 Mi primer álbum
-
+<a href="album.html" class="album-link" aria-label="Mi mundo chiquito">
+Mi mundo chiquito
 </a>
 
-<button class="btn" id="musicBtn">
 
-🎵 Reproducir música
+<div class="menu">
+
+
+<button id="musicBtn">
+
+🎵 Música
 
 </button>
 
-<a class="btn" href="mensajes.html">
 
-💌 Mensajes para Josefina
+<a href="mensajes.html">
 
-</a>
-
-<a class="btn" href="muro.html">
-
-💖 Leer mensajes
+💌 Mensajes
 
 </a>
 
+
+<a href="muro.html">
+
+💖 Recuerdos
+
+</a>
+
+
 </div>
 
-<div class="footer">
 
-Con mucho amor para recordar tus primeros días.
+<div class="signature">
+
+Un recuerdo para toda la vida
 
 </div>
 
+
 </div>
+
 
 <audio id="music">
 
@@ -440,29 +411,31 @@ Con mucho amor para recordar tus primeros días.
 
 </audio>
 
+
 <script>
 
-const audio=document.getElementById("music");
+const music=document.getElementById("music");
 
-const btn=document.getElementById("musicBtn");
+const musicBtn=document.getElementById("musicBtn");
 
 let playing=false;
 
-btn.addEventListener("click",()=>{
+
+musicBtn.addEventListener("click",()=>{
 
 if(!playing){
 
-audio.play();
+music.play();
 
-btn.innerHTML="⏸️ Pausar música";
+musicBtn.innerHTML="⏸️ Pausar";
 
 playing=true;
 
 }else{
 
-audio.pause();
+music.pause();
 
-btn.innerHTML="🎵 Reproducir música";
+musicBtn.innerHTML="🎵 Música";
 
 playing=false;
 
@@ -470,15 +443,33 @@ playing=false;
 
 });
 
-audio.addEventListener("ended",()=>{
+
+</script>
+
+music.addEventListener("ended",()=>{
 
 playing=false;
 
-btn.innerHTML="🎵 Reproducir música";
+musicBtn.innerHTML="🎵 Música";
 
 });
+
+
+document.querySelector(".album-link").addEventListener("mouseenter",function(){
+
+this.style.transform="translate(-50%,-50%) scale(1.03)";
+
+});
+
+document.querySelector(".album-link").addEventListener("mouseleave",function(){
+
+this.style.transform="translate(-50%,-50%) scale(1)";
+
+});
+
 
 </script>
 
 </body>
+
 </html>
