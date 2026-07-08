@@ -1,28 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
 
-music.addEventListener("ended",()=>{
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-playing=false;
+<title>Josefina</title>
 
-musicBtn.innerHTML="🎵 Música";
+<style>
 
-});
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#f6ede8;
+    font-family:Arial, Helvetica, sans-serif;
+    display:flex;
+    justify-content:center;
+}
+
+.contenedor{
+
+    position:relative;
+    width:100%;
+    max-width:1024px;
+}
+
+.portada{
+
+    width:100%;
+    display:block;
+}
+
+/*-------------------------
+    BOTON GALERIA
+--------------------------*/
+
+.galeria{
+
+    position:absolute;
+
+    left:33%;
+    top:53.5%;
+
+    width:35%;
+    height:6.5%;
+
+    cursor:pointer;
+}
 
 
-document.querySelector(".album-link").addEventListener("mouseenter",function(){
+/*-------------------------
+    BOTON MUSICA
+--------------------------*/
 
-this.style.transform="translate(-50%,-50%) scale(1.03)";
+.musica{
 
-});
+    position:absolute;
 
-document.querySelector(".album-link").addEventListener("mouseleave",function(){
+    left:35%;
+    top:66%;
 
-this.style.transform="translate(-50%,-50%) scale(1)";
+    width:30%;
+    height:5.5%;
 
-});
+    cursor:pointer;
+}
 
+/*-------------------------
+   BOTON DETENER
+--------------------------*/
+
+#stop{
+
+    display:none;
+
+    position:fixed;
+
+    top:20px;
+    right:20px;
+
+    padding:12px 20px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#c56c86;
+
+    color:white;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    z-index:999;
+}
+
+
+/*-------------------------
+    FIRMA
+--------------------------*/
+
+.firma{
+
+    text-align:center;
+
+    padding:20px;
+
+    font-size:15px;
+
+    color:#7b5c5c;
+}
+
+.firma a{
+
+    text-decoration:none;
+
+    color:#7b5c5c;
+
+    font-weight:bold;
+}
+
+.firma a:hover{
+
+    color:#b86d8b;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<img src="portada.png" class="portada">
+
+<a href="galeria.html" class="galeria"></a>
+
+<div class="musica" onclick="reproducir()"></div>
+
+</div>
+
+<div class="firma">
+
+<a href="https://wa.me/5493854118422" target="_blank">
+Diseño digital Morgana Tecno
+</a>
+
+</div>
+
+<audio id="audio">
+
+<source src="Te esperaba.mp3" type="audio/mpeg">
+
+</audio>
+
+<button id="stop" onclick="detener()">
+
+Detener música
+
+</button>
+
+<script>
+
+const audio=document.getElementById("audio");
+const stop=document.getElementById("stop");
+
+function reproducir(){
+
+audio.play();
+
+stop.style.display="block";
+
+}
+
+function detener(){
+
+audio.pause();
+
+audio.currentTime=0;
+
+stop.style.display="none";
+
+}
 
 </script>
 
 </body>
-
 </html>
