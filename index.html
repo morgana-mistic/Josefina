@@ -9,39 +9,60 @@
 
 <title>Josefina</title>
 
+
 <style>
+
+
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500&display=swap');
+
+
 
 html,body{
 
 margin:0;
 padding:0;
+
 width:100%;
 height:100%;
+
 overflow:hidden;
+
 background:#000;
 
 }
 
+
+
 #contenedor{
 
 position:relative;
+
 width:100vw;
+
 height:100vh;
+
 overflow:hidden;
 
 }
 
+
+
 #portada{
 
 position:absolute;
+
 left:0;
 top:0;
+
 width:100%;
 height:100%;
+
 object-fit:contain;
+
 user-select:none;
 
 }
+
 
 
 /* zonas clickeables */
@@ -49,22 +70,28 @@ user-select:none;
 #galeria{
 
 position:absolute;
+
 cursor:pointer;
+
 z-index:20;
 
 }
+
 
 
 #musica{
 
 position:absolute;
+
 cursor:pointer;
+
 z-index:20;
 
 }
 
 
-/* botón detener */
+
+/* botón detener música */
 
 #detener{
 
@@ -73,6 +100,7 @@ display:none;
 position:absolute;
 
 top:20px;
+
 right:20px;
 
 padding:12px 20px;
@@ -89,111 +117,20 @@ font-size:18px;
 
 cursor:pointer;
 
-z-index:100;
+z-index:300;
 
 }
 
 
-/* GALERIA */
 
-#visorGaleria{
-
-display:none;
-
-position:absolute;
-
-left:0;
-top:0;
-
-width:100%;
-height:100%;
-
-background:rgba(255,230,240,.96);
-
-z-index:150;
-
-overflow-y:auto;
-
-padding:20px;
-
-box-sizing:border-box;
-
-}
-
-
-#visorGaleria h2{
-
-text-align:center;
-
-font-family:Arial;
-
-color:#c75c80;
-
-}
-
-
-#fotos{
-
-display:flex;
-
-flex-wrap:wrap;
-
-justify-content:center;
-
-gap:15px;
-
-}
-
-
-#fotos img{
-
-width:180px;
-
-height:240px;
-
-object-fit:contain;
-
-background:white;
-
-padding:8px;
-
-border-radius:12px;
-
-box-shadow:0 4px 12px rgba(0,0,0,.25);
-
-}
-
-
-#volver{
-
-display:block;
-
-margin:20px auto;
-
-padding:12px 25px;
-
-border:none;
-
-border-radius:15px;
-
-background:#d46d8d;
-
-color:white;
-
-font-size:18px;
-
-cursor:pointer;
-
-}
-
-
-/* firma */
+/* FIRMA */
 
 #firma{
 
 position:fixed;
 
 left:50%;
+
 bottom:18px;
 
 transform:translateX(-50%);
@@ -211,6 +148,7 @@ white-space:nowrap;
 }
 
 
+
 #firma a{
 
 color:white;
@@ -218,13 +156,17 @@ color:white;
 text-decoration:none;
 
 text-shadow:
+
 0 0 3px black,
+
 0 0 6px black,
+
 0 0 10px black;
 
 transition:.25s;
 
 }
+
 
 
 #firma a:hover{
@@ -234,26 +176,257 @@ color:#ffd6e6;
 }
 
 
+
+
+
+/* =========================
+   GALERIA INTEGRADA
+========================= */
+
+
+#visorGaleria{
+
+display:none;
+
+position:fixed;
+
+z-index:500;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+overflow:auto;
+
+box-sizing:border-box;
+
+padding:25px;
+
+
+background:#fff6ef;
+
+background-image:
+
+radial-gradient(#efd8d0 1px, transparent 1px);
+
+background-size:20px 20px;
+
+
+font-family:'Poppins', sans-serif;
+
+color:#8b6262;
+
+}
+
+#visorGaleria h1{
+
+font-family:'Great Vibes', cursive;
+
+font-size:60px;
+
+font-weight:normal;
+
+color:#ce8fa2;
+
+text-align:center;
+
+margin:10px 0 35px;
+
+}
+
+.galeriaFotos{
+
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+
+gap:40px;
+
+max-width:1000px;
+
+margin:auto;
+
+}
+
+.foto{
+
+position:relative;
+
+background:white;
+
+padding:12px 12px 25px;
+
+box-shadow:
+
+0 8px 18px rgba(120,80,80,.20);
+
+cursor:pointer;
+
+transition:.4s;
+
+}
+
+.foto:nth-child(odd){
+
+transform:rotate(-3deg);
+
+}
+
+
+
+.foto:nth-child(even){
+
+transform:rotate(3deg);
+
+}
+
+.foto:hover{
+
+transform:rotate(0deg) translateY(-8px);
+
+}
+
+
+.foto img{
+
+
+width:100%;
+
+height:270px;
+
+object-fit:cover;
+
+border-radius:4px;
+
+
+}
+
+
+.texto{
+
+text-align:center;
+
+margin-top:15px;
+
+font-size:16px;
+
+font-style:italic;
+
+color:#9e6878;
+
+}
+
+
+/* cinta adhesiva */
+
+.foto::before{
+
+content:"";
+
+position:absolute;
+
+width:70px;
+
+height:22px;
+
+background:rgba(240,210,180,.65);
+
+
+top:-10px;
+
+left:50%;
+
+transform:translateX(-50%) rotate(-5deg);
+
+}
+
+/* botón volver */
+
+
+.volverGaleria{
+
+display:block;
+
+width:max-content;
+
+margin:45px auto 20px;
+
+padding:12px 35px;
+
+background:#dca7b6;
+
+color:white;
+border-radius:30px;
+cursor:pointer;
+
+}
+
+/* visor de foto ampliada */
+
+#visorFotoGrande{
+display:none;
+position:fixed;
+z-index:1000;
+top:0;
+left:0;
+width:100%;
+height:100%;
+
+background:rgba(80,50,50,.75);
+
+justify-content:center;
+
+align-items:center;
+
+
+}
+
+
+#visorFotoGrande img{
+
+max-width:90%;
+
+max-height:85%;
+
+object-fit:contain;
+
+background:white;
+
+padding:15px;
+
+box-shadow:0 10px 40px black;
+
+
+}
+
+
+#visorFotoGrande.activo{
+
+display:flex;
+
+}
+
 </style>
 
 </head>
-
-
 <body>
-
 
 <div id="contenedor">
 
-
 <img id="portada" src="portada.png">
 
+<!-- zona invisible del botón galería -->
 
 <div id="galeria"></div>
 
+<!-- zona invisible del botón música -->
 
 <div id="musica"></div>
-
-
 
 <button id="detener">
 
@@ -261,38 +434,154 @@ Detener música
 
 </button>
 
-
+<!-- =========================
+     GALERIA INTEGRADA
+========================= -->
 
 <div id="visorGaleria">
 
-<h2>Mi mundo chiquito</h2>
 
+<h1>Mi mundo chiquito</h1>
 
-<div id="fotos">
+<div class="galeriaFotos">
+
+<div class="foto">
 
 <img src="foto1.jpeg">
+
+<div class="texto">
+En camino
+</div>
+
+</div>
+
+<div class="foto">
+
 <img src="foto2.jpeg">
+
+<div class="texto">
+Mi primera foto
+</div>
+
+</div>
+
+<div class="foto">
+
 <img src="foto3.jpeg">
+
+<div class="texto">
+Empezando a soñar conmigo
+</div>
+
+</div>
+
+
+<div class="foto">
+
 <img src="foto4.jpeg">
+
+<div class="texto">
+Creciendo en la barriga de mami
+</div>
+
+</div>
+
+<div class="foto">
+
 <img src="foto5.jpeg">
+
+<div class="texto">
+Esperándome con amor
+</div>
+
+</div>
+
+
+
+
+
+<div class="foto">
+
 <img src="foto6.jpeg">
+
+<div class="texto">
+Creciendo
+</div>
+
+</div>
+
+
+
+
+
+<div class="foto">
+
 <img src="foto7.jpeg">
+
+<div class="texto">
+Ya tenía muchos besitos esperándome
+</div>
+
+</div>
+
+
+
+
+
+<div class="foto">
+
 <img src="foto8.jpeg">
+
+<div class="texto">
+Mis papitos
+</div>
+
+</div>
+
+
+
+
+
+<div class="foto">
+
 <img src="foto9.jpeg">
+
+<div class="texto">
+El día que comenzó mi nombre
+</div>
+
+</div>
+
+<div class="foto">
+
 <img src="foto10.jpeg">
 
+<div class="texto">
+Mi tío
 </div>
-
-
-<button id="volver">
-
-Volver
-
-</button>
-
 
 </div>
 
+</div>
+
+<div class="volverGaleria">
+
+Volver al inicio
+
+</div>
+
+</div>
+
+
+<!-- visor de imágenes grandes -->
+
+<div id="visorFotoGrande">
+
+<img id="imagenGrande">
+
+</div>
+
+<!-- firma -->
 
 
 <div id="firma">
@@ -305,21 +594,15 @@ Diseño digital Morgana Tecno
 
 </div>
 
-
-
 </div>
-
 
 
 <audio id="audio">
 
+
 <source src="Te esperaba.mp3" type="audio/mpeg">
 
 </audio>
-
-
-
-
 <script>
 
 
@@ -333,9 +616,19 @@ const audio=document.getElementById("audio");
 
 const detener=document.getElementById("detener");
 
+
 const visor=document.getElementById("visorGaleria");
 
-const volver=document.getElementById("volver");
+const volver=document.querySelector(".volverGaleria");
+
+
+const fotos=document.querySelectorAll(".foto img");
+
+const visorFoto=document.getElementById("visorFotoGrande");
+
+const imagenGrande=document.getElementById("imagenGrande");
+
+
 
 
 
@@ -343,6 +636,12 @@ function ubicarBotones(){
 
 
 const rect=imagen.getBoundingClientRect();
+
+
+
+/*
+Medidas basadas en portada.png de 1024x1536
+*/
 
 
 const escalaX=rect.width/1024;
@@ -353,6 +652,8 @@ const escalaY=rect.height/1536;
 const offsetX=rect.left;
 
 const offsetY=rect.top;
+
+
 
 
 
@@ -369,7 +670,9 @@ galeria.style.height=(95*escalaY)+"px";
 
 
 
-/************** MUSICA *************/
+
+
+/************* MUSICA *************/
 
 
 musica.style.left=(offsetX+345*escalaX)+"px";
@@ -381,7 +684,10 @@ musica.style.width=(335*escalaX)+"px";
 musica.style.height=(90*escalaY)+"px";
 
 
+
 }
+
+
 
 
 
@@ -392,14 +698,23 @@ imagen.onload=ubicarBotones;
 
 
 
+
+
+
+/* MUSICA */
+
+
 musica.onclick=function(){
 
 
 audio.pause();
 
+
 audio.currentTime=0;
 
+
 audio.play();
+
 
 
 detener.style.display="block";
@@ -409,10 +724,13 @@ detener.style.display="block";
 
 
 
+
+
 detener.onclick=function(){
 
 
 audio.pause();
+
 
 audio.currentTime=0;
 
@@ -422,6 +740,14 @@ detener.style.display="none";
 
 }
 
+
+
+
+
+
+
+
+/* ABRIR GALERIA */
 
 
 galeria.onclick=function(){
@@ -434,6 +760,10 @@ visor.style.display="block";
 
 
 
+
+/* CERRAR GALERIA */
+
+
 volver.onclick=function(){
 
 
@@ -444,10 +774,52 @@ visor.style.display="none";
 
 
 
+
+
+
+
+
+/* FOTO AMPLIADA */
+
+
+fotos.forEach(foto=>{
+
+
+foto.onclick=function(){
+
+
+imagenGrande.src=this.src;
+
+
+visorFoto.classList.add("activo");
+
+
+}
+
+
+
+});
+
+
+
+
+
+
+visorFoto.onclick=function(){
+
+
+visorFoto.classList.remove("activo");
+
+
+}
+
+
+
+
 </script>
+
 
 
 </body>
 
 </html>
-
